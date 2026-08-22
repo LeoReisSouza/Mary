@@ -1,6 +1,6 @@
 # Mary Reis — Massage Therapy (Dublin)
 
-`https://leoreissouza.github.io/Mary/`
+`https://www.maryreis-massage.com/`
 
 Site estático: HTML + CSS + JavaScript puro. Sem build, sem dependências.
 
