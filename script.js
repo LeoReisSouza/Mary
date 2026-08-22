@@ -14,12 +14,30 @@ const CONFIG = {
 
   businessName: "Mary Reis Massage Therapy",
   location: "Dublin, Ireland",
+  address: "Basement, Castleview, 25, Clontarf East, Dublin, D05 X9F8",
 
-  // Pre-filled WhatsApp message, per language
+  // Generic message used by the WhatsApp link in the footer.
+  // The reservation form builds its own message from the visitor's choices.
   whatsappMessage: {
     en: "Hi Mary! I came across your massage therapy services and I'd love to know more about your treatments. Could you please tell me a little more? Thank you!",
     pt: "Oi, Mary! Encontrei o seu trabalho de massagem terapêutica e adoraria saber mais sobre as sessões. Você poderia me contar um pouco mais? Obrigado!"
   }
+};
+
+/* Treatments and extras — the source of truth for the reservation message.
+   Prices live in the HTML too (they are visible content); these keys only
+   describe what gets written into WhatsApp. */
+const TREATMENTS = {
+  full:         { nameKey: "treatments.full.name" },
+  personalised: { nameKey: "treatments.personalised.name" },
+  thai:         { nameKey: "treatments.thai.name" },
+  sport:        { nameKey: "treatments.sport.name" }
+};
+
+const EXTRAS = {
+  cupping:  { nameKey: "extras.cupping" },
+  minutes:  { nameKey: "extras.minutes" },
+  needling: { nameKey: "extras.needling" }
 };
 
 /* -------------------------------------------------------------------------
@@ -28,108 +46,192 @@ const CONFIG = {
 const translations = {
   en: {
     "meta.title": "Mary Reis Massage Therapy | Therapeutic Massage in Dublin",
-    "meta.description": "Personalised massage therapy in Dublin. Relax, release tension and take a moment for yourself with Mary Reis.",
+    "meta.description": "Personalised massage therapy in Dublin. Full body, Thai and sport massage — choose your treatment and reserve with Mary Reis.",
 
     "brand.tagline": "Massage Therapy",
 
     "nav.home": "Home",
     "nav.about": "About",
-    "nav.benefits": "Benefits",
-    "nav.contact": "Contact",
-    "nav.book": "Book Now",
+    "nav.treatments": "Treatments",
+    "nav.reserve": "Reserve",
 
     "hero.location": "Based in Dublin, Ireland",
     "hero.title": "Massage Therapy for Your Body & Mind",
     "hero.subtitle": "Relax, restore and reconnect with yourself through personalised therapeutic massage in Dublin.",
-    "hero.ctaPrimary": "Book a Massage",
-    "hero.ctaSecondary": "Message Mary",
+    "hero.ctaPrimary": "Explore Treatments",
+    "hero.ctaSecondary": "Meet Mary",
     "hero.imageAlt": "Therapeutic back massage in a warm, calm treatment room",
 
-    "about.eyebrow": "About",
-    "about.title": "Feel Better. Move Better.",
-    "about.p1": "Mary Reis offers personalised therapeutic massage in a calm, welcoming space. Every session is adapted to how your body feels on the day, at your own pace and with full attention to how you feel.",
-    "about.p2": "Massage may help promote relaxation, ease everyday muscle tension and support a general sense of wellbeing. It is a moment to slow down, breathe and take care of yourself.",
+    "about.eyebrow": "About Mary",
+    "about.title": "A Moment to Reconnect",
+    "about.p1": "Massage therapy is a moment to slow down, release tension and reconnect with your body. Mary offers personalised massage experiences designed around what your body needs on the day.",
+    "about.quote": "Therapeutic touch. Real results. Care tailored to your body and your needs.",
+    "about.imageAlt": "Mary Reis working with a client during a treatment",
+    "about.imageAlt2": "Close-up of a dry needling treatment on a client's back",
 
-    "benefits.eyebrow": "Benefits",
-    "benefits.title": "A Simple Way to Care for Yourself",
-    "benefits.card1.title": "Relaxation",
-    "benefits.card1.text": "Helps release everyday tension and encourages deep relaxation.",
-    "benefits.card2.title": "Muscle Relief",
-    "benefits.card2.text": "A soothing approach to tired and tense muscles.",
-    "benefits.card3.title": "Better Wellbeing",
-    "benefits.card3.text": "Take time to slow down, reset and care for yourself.",
-    "benefits.card4.title": "Mind & Body",
-    "benefits.card4.text": "A calming experience designed to help you reconnect with your body.",
+    "quality.relaxation": "Relaxation",
+    "quality.muscle": "Muscle Relief",
+    "quality.wellbeing": "Wellbeing",
+    "quality.mindbody": "Mind & Body",
 
-    "contact.eyebrow": "Get in touch",
-    "contact.title": "Ready to Take a Moment for Yourself?",
-    "contact.text": "Whether you are looking to relax, release tension or simply take some time for yourself, Mary would love to hear from you.",
-    "contact.whatsapp": "Chat on WhatsApp",
-    "contact.instagram": "Message on Instagram",
-    "contact.location": "Dublin, Ireland",
+    "location.title": "Find Me in Dublin",
+    "location.lead": "Treatments take place in a quiet, private space in Clontarf East.",
+    "location.label": "Address",
+    "location.directions": "Get directions",
+    "location.mapTitle": "Map showing the treatment location in Clontarf East, Dublin",
 
+    "treatments.title": "Treatments",
+    "treatments.lead": "Choose the treatment that feels right for you.",
+    "treatments.duration": "40 minutes",
+    "treatments.full.name": "Full Body Massage",
+    "treatments.full.desc": "Relaxing full-body massage from head to toe.",
+    "treatments.personalised.name": "Personalised Massage",
+    "treatments.personalised.desc": "Choose one or two areas to be treated throughout the entire session.",
+    "treatments.thai.name": "Thai Massage",
+    "treatments.thai.desc": "An ancient technique that combines stretching, acupressure and assisted movements to improve flexibility, relieve tension and restore energy.",
+    "treatments.sport.name": "Sport Massage",
+    "treatments.sport.desc": "Ideal for pre and post events, prevention and recovery of muscles. Improves performance and reduces muscle soreness.",
+
+    "extras.title": "Extras",
+    "extras.cupping": "Cupping Therapy",
+    "extras.minutes": "10 Minutes Extra",
+    "extras.needling": "Dry Needling",
+
+    "plans.title": "Monthly Plans",
+    "plans.lead": "For a regular rhythm of care.",
+    "plans.essential.name": "Essential",
+    "plans.essential.item1": "3 full body massages per month",
+    "plans.essential.item2": "40 minutes each",
+    "plans.premium.name": "Premium",
+    "plans.premium.item1": "3 full body massages per month",
+    "plans.premium.item2": "40 minutes each",
+    "plans.premium.item3": "+ Cupping therapy",
+    "plans.premium.item4": "+ 10 minutes extra",
+    "plans.note": "Ask about the monthly plans in your message.",
+
+    "reserve.title": "Reserve Your Massage",
+    "reserve.lead": "Choose your treatment and any extras you would like to add.",
+    "reserve.step1": "Choose your massage",
+    "reserve.step2": "Add extras",
+    "reserve.optional": "optional",
+    "reserve.button": "Reserve Your Massage",
+    "reserve.hint": "Opens WhatsApp with your selection so Mary can confirm a time.",
+    "reserve.error": "Please choose a massage first.",
+
+    "footer.location": "Dublin, Ireland",
+    "footer.locationLink": "Location",
     "footer.copyright": "© 2026 Mary Reis Massage Therapy. All rights reserved.",
 
     "a11y.skip": "Skip to content",
     "a11y.menuOpen": "Open menu",
     "a11y.menuClose": "Close menu",
     "a11y.language": "Language",
-    "a11y.whatsapp": "Chat on WhatsApp",
+    "a11y.instagram": "Mary Reis on Instagram",
     "a11y.toTop": "Back to top",
+
+    "wa.intro": "Hi Mary! I'd like to book a massage.",
+    "wa.massage": "Massage",
+    "wa.duration": "Duration",
+    "wa.extras": "Extras",
+    "wa.none": "None",
+    "wa.closing": "Could you please let me know your available times?",
+    "wa.thanks": "Thank you!",
 
     "config.note": "Setup: open script.js and replace the placeholders in CONFIG so the contact buttons work — missing: "
   },
 
   pt: {
     "meta.title": "Mary Reis Massoterapia | Massagem Terapêutica em Dublin",
-    "meta.description": "Massagem terapêutica personalizada em Dublin. Relaxe, alivie tensões e reserve um momento para você com Mary Reis.",
+    "meta.description": "Massagem terapêutica personalizada em Dublin. Massagem completa, tailandesa e desportiva — escolha o seu tratamento e reserve com a Mary Reis.",
 
     "brand.tagline": "Massoterapia",
 
     "nav.home": "Início",
     "nav.about": "Sobre",
-    "nav.benefits": "Benefícios",
-    "nav.contact": "Contato",
-    "nav.book": "Agendar",
+    "nav.treatments": "Tratamentos",
+    "nav.reserve": "Reservar",
 
     "hero.location": "Em Dublin, Irlanda",
     "hero.title": "Massagem Terapêutica para o Corpo e a Mente",
     "hero.subtitle": "Relaxe, restaure e reconecte-se com você através de uma massagem terapêutica personalizada em Dublin.",
-    "hero.ctaPrimary": "Agendar uma Massagem",
-    "hero.ctaSecondary": "Falar com a Mary",
+    "hero.ctaPrimary": "Ver Tratamentos",
+    "hero.ctaSecondary": "Conhecer a Mary",
     "hero.imageAlt": "Massagem terapêutica nas costas em uma sala aconchegante e tranquila",
 
-    "about.eyebrow": "Sobre",
-    "about.title": "Sinta-se Melhor. Mova-se Melhor.",
-    "about.p1": "Mary Reis oferece massagem terapêutica personalizada em um espaço calmo e acolhedor. Cada sessão é adaptada ao que o seu corpo pede naquele dia, no seu ritmo e com total atenção ao que você sente.",
-    "about.p2": "A massagem pode ajudar a promover relaxamento, aliviar a tensão muscular do dia a dia e favorecer uma sensação geral de bem-estar. É um momento para desacelerar, respirar e cuidar de você.",
+    "about.eyebrow": "Sobre a Mary",
+    "about.title": "Um Momento para se Reconectar",
+    "about.p1": "A massagem terapêutica é um momento para desacelerar, aliviar tensões e se reconectar com o seu corpo. A Mary oferece experiências de massagem personalizadas, pensadas para o que o seu corpo precisa naquele dia.",
+    "about.quote": "Toque terapêutico. Resultados reais. Cuidado sob medida para o seu corpo e as suas necessidades.",
+    "about.imageAlt": "Mary Reis atendendo um cliente durante uma sessão",
+    "about.imageAlt2": "Detalhe de uma sessão de dry needling nas costas de um cliente",
 
-    "benefits.eyebrow": "Benefícios",
-    "benefits.title": "Um Jeito Simples de Cuidar de Você",
-    "benefits.card1.title": "Relaxamento",
-    "benefits.card1.text": "Ajuda a liberar a tensão do dia a dia e favorece um relaxamento profundo.",
-    "benefits.card2.title": "Alívio Muscular",
-    "benefits.card2.text": "Uma abordagem suave para músculos cansados e tensionados.",
-    "benefits.card3.title": "Mais Bem-estar",
-    "benefits.card3.text": "Um tempo para desacelerar, recomeçar e cuidar de si.",
-    "benefits.card4.title": "Corpo e Mente",
-    "benefits.card4.text": "Uma experiência tranquila para ajudar você a se reconectar com o seu corpo.",
+    "quality.relaxation": "Relaxamento",
+    "quality.muscle": "Alívio Muscular",
+    "quality.wellbeing": "Bem-estar",
+    "quality.mindbody": "Corpo e Mente",
 
-    "contact.eyebrow": "Fale comigo",
-    "contact.title": "Pronto para Reservar um Momento para Você?",
-    "contact.text": "Se você quer relaxar, aliviar tensões ou simplesmente ter um tempo para si, a Mary vai adorar conversar com você.",
-    "contact.whatsapp": "Conversar no WhatsApp",
-    "contact.instagram": "Chamar no Instagram",
-    "contact.location": "Dublin, Irlanda",
+    "location.title": "Onde Me Encontrar em Dublin",
+    "location.lead": "Os atendimentos acontecem em um espaço tranquilo e reservado em Clontarf East.",
+    "location.label": "Endereço",
+    "location.directions": "Como chegar",
+    "location.mapTitle": "Mapa com a localização do atendimento em Clontarf East, Dublin",
 
+    "treatments.title": "Tratamentos",
+    "treatments.lead": "Escolha o tratamento que faz mais sentido para você.",
+    "treatments.duration": "40 minutos",
+    "treatments.full.name": "Massagem Completa",
+    "treatments.full.desc": "Massagem relaxante de corpo inteiro, da cabeça aos pés.",
+    "treatments.personalised.name": "Massagem Personalizada",
+    "treatments.personalised.desc": "Escolha uma ou duas áreas para serem trabalhadas durante toda a sessão.",
+    "treatments.thai.name": "Massagem Tailandesa",
+    "treatments.thai.desc": "Uma técnica milenar que combina alongamentos, acupressão e movimentos assistidos para melhorar a flexibilidade, aliviar tensões e restaurar a energia.",
+    "treatments.sport.name": "Massagem Desportiva",
+    "treatments.sport.desc": "Ideal para antes e depois de competições, prevenção e recuperação muscular. Melhora o desempenho e reduz a dor muscular.",
+
+    "extras.title": "Extras",
+    "extras.cupping": "Ventosaterapia",
+    "extras.minutes": "10 Minutos Extras",
+    "extras.needling": "Dry Needling",
+
+    "plans.title": "Planos Mensais",
+    "plans.lead": "Para manter um ritmo constante de cuidado.",
+    "plans.essential.name": "Essential",
+    "plans.essential.item1": "3 massagens completas por mês",
+    "plans.essential.item2": "40 minutos cada",
+    "plans.premium.name": "Premium",
+    "plans.premium.item1": "3 massagens completas por mês",
+    "plans.premium.item2": "40 minutos cada",
+    "plans.premium.item3": "+ Ventosaterapia",
+    "plans.premium.item4": "+ 10 minutos extras",
+    "plans.note": "Pergunte sobre os planos mensais na sua mensagem.",
+
+    "reserve.title": "Reserve a Sua Massagem",
+    "reserve.lead": "Escolha o seu tratamento e os extras que quiser adicionar.",
+    "reserve.step1": "Escolha a sua massagem",
+    "reserve.step2": "Adicione extras",
+    "reserve.optional": "opcional",
+    "reserve.button": "Reservar Minha Massagem",
+    "reserve.hint": "Abre o WhatsApp com a sua escolha para a Mary confirmar o horário.",
+    "reserve.error": "Escolha uma massagem primeiro.",
+
+    "footer.location": "Dublin, Irlanda",
+    "footer.locationLink": "Localização",
     "footer.copyright": "© 2026 Mary Reis Massage Therapy. Todos os direitos reservados.",
 
     "a11y.skip": "Ir para o conteúdo",
     "a11y.menuOpen": "Abrir menu",
     "a11y.menuClose": "Fechar menu",
     "a11y.language": "Idioma",
-    "a11y.whatsapp": "Conversar no WhatsApp",
+    "a11y.instagram": "Mary Reis no Instagram",
     "a11y.toTop": "Voltar ao topo",
+
+    "wa.intro": "Oi, Mary! Gostaria de agendar uma massagem.",
+    "wa.massage": "Massagem",
+    "wa.duration": "Duração",
+    "wa.extras": "Extras",
+    "wa.none": "Nenhum",
+    "wa.closing": "Você poderia me dizer os seus horários disponíveis?",
+    "wa.thanks": "Obrigado!",
 
     "config.note": "Configuração: abra o script.js e substitua os valores do CONFIG para os botões de contato funcionarem — faltando: "
   }
@@ -140,6 +242,9 @@ const translations = {
    ------------------------------------------------------------------------- */
 const STORAGE_KEY = "maryreis:lang";
 const DEFAULT_LANG = "en";
+
+let currentLang = DEFAULT_LANG;
+const t = (key) => translations[currentLang][key] ?? translations[DEFAULT_LANG][key] ?? key;
 
 const isPlaceholder = (value) => typeof value !== "string" || value.startsWith("REPLACE_WITH");
 
@@ -164,19 +269,18 @@ function storeLang(lang) {
 }
 
 /* -------------------------------------------------------------------------
-   4. Contact links (WhatsApp + Instagram)
+   4. Contact links (WhatsApp, Instagram, Google Maps)
    ------------------------------------------------------------------------- */
-function whatsappUrl(lang) {
+function whatsappUrl(message) {
   const digits = String(CONFIG.whatsappNumber).replace(/\D/g, "");
-  if (!digits) return null;
-  const message = CONFIG.whatsappMessage[lang] || CONFIG.whatsappMessage[DEFAULT_LANG];
+  if (!digits || isPlaceholder(CONFIG.whatsappNumber)) return null;
   return "https://wa.me/" + digits + "?text=" + encodeURIComponent(message);
 }
 
-function applyContactLinks(lang) {
+function applyContactLinks() {
   const missing = [];
 
-  const waUrl = isPlaceholder(CONFIG.whatsappNumber) ? null : whatsappUrl(lang);
+  const waUrl = whatsappUrl(CONFIG.whatsappMessage[currentLang] || CONFIG.whatsappMessage[DEFAULT_LANG]);
   if (!waUrl) missing.push("CONFIG.whatsappNumber");
 
   document.querySelectorAll("[data-whatsapp]").forEach((link) => {
@@ -184,9 +288,8 @@ function applyContactLinks(lang) {
       link.href = waUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.removeAttribute("aria-disabled");
     } else {
-      link.href = "#contact";
+      link.href = "#reserve";
       link.removeAttribute("target");
     }
   });
@@ -195,21 +298,19 @@ function applyContactLinks(lang) {
   if (!igUrl) missing.push("CONFIG.instagramUrl");
 
   document.querySelectorAll("[data-instagram]").forEach((link) => {
-    link.href = igUrl || "#contact";
-    if (igUrl) {
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    } else {
-      link.removeAttribute("target");
-    }
+    link.href = igUrl || "#reserve";
+    if (!igUrl) link.removeAttribute("target");
   });
+
+  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
+  document.querySelectorAll("[data-maps]").forEach((link) => { link.href = mapsUrl; });
 
   // Owner-facing hint, only visible while placeholders are still in place
   const note = document.getElementById("config-note");
   if (note) {
     if (missing.length) {
       note.hidden = false;
-      note.textContent = translations[lang]["config.note"] + missing.join(", ");
+      note.textContent = t("config.note") + missing.join(", ");
       console.warn("[Mary Reis site] Still using placeholders: " + missing.join(", "));
     } else {
       note.hidden = true;
@@ -220,8 +321,6 @@ function applyContactLinks(lang) {
 /* -------------------------------------------------------------------------
    5. Language switching (no page reload)
    ------------------------------------------------------------------------- */
-let currentLang = DEFAULT_LANG;
-
 function setLanguage(lang, { persist = true } = {}) {
   if (!translations[lang]) lang = DEFAULT_LANG;
   currentLang = lang;
@@ -250,6 +349,9 @@ function setLanguage(lang, { persist = true } = {}) {
     toggle.setAttribute("aria-label", open ? dict["a11y.menuClose"] : dict["a11y.menuOpen"]);
   }
 
+  const error = document.getElementById("booking-error");
+  if (error && !error.hidden) error.textContent = dict["reserve.error"];
+
   // Switch button state
   document.querySelectorAll(".lang-switch__btn").forEach((btn) => {
     const active = btn.dataset.lang === lang;
@@ -257,7 +359,8 @@ function setLanguage(lang, { persist = true } = {}) {
     btn.setAttribute("aria-pressed", String(active));
   });
 
-  applyContactLinks(lang);
+  applyContactLinks();
+  refreshOpenPanels();
   if (persist) storeLang(lang);
 }
 
@@ -276,7 +379,7 @@ function initNav() {
   function openMenu() {
     header.classList.add("is-open");
     toggle.setAttribute("aria-expanded", "true");
-    toggle.setAttribute("aria-label", translations[currentLang]["a11y.menuClose"]);
+    toggle.setAttribute("aria-label", t("a11y.menuClose"));
     backdrop.hidden = false;
     requestAnimationFrame(() => backdrop.classList.add("is-visible"));
     document.body.style.overflow = "hidden";
@@ -291,7 +394,7 @@ function initNav() {
     if (!header.classList.contains("is-open")) return;
     header.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", translations[currentLang]["a11y.menuOpen"]);
+    toggle.setAttribute("aria-label", t("a11y.menuOpen"));
     backdrop.classList.remove("is-visible");
     document.body.style.overflow = "";
     window.setTimeout(() => { backdrop.hidden = true; }, 350);
@@ -418,7 +521,127 @@ function initReveals() {
 }
 
 /* -------------------------------------------------------------------------
-   9. Start
+   9. Treatments accordion (prices stay hidden until a treatment is opened)
+   ------------------------------------------------------------------------- */
+function setPanel(item, open) {
+  const trigger = item.querySelector(".accordion__trigger");
+  const panel = item.querySelector(".accordion__panel");
+
+  item.classList.toggle("is-open", open);
+  trigger.setAttribute("aria-expanded", String(open));
+
+  if (open) {
+    panel.style.height = panel.scrollHeight + "px";
+    // release the fixed height once the transition is done, so the panel
+    // can grow if the text reflows (language switch, resize)
+    window.setTimeout(() => {
+      if (item.classList.contains("is-open")) panel.style.height = "auto";
+    }, 400);
+  } else {
+    panel.style.height = panel.scrollHeight + "px";
+    void panel.offsetHeight; // force a reflow so the browser animates from the real height
+    panel.style.height = "0px";
+  }
+}
+
+function refreshOpenPanels() {
+  document.querySelectorAll(".accordion__item.is-open .accordion__panel").forEach((panel) => {
+    panel.style.height = "auto";
+  });
+}
+
+function initAccordion() {
+  document.querySelectorAll(".accordion__item").forEach((item) => {
+    const trigger = item.querySelector(".accordion__trigger");
+    if (!trigger) return;
+    trigger.addEventListener("click", () => {
+      setPanel(item, !item.classList.contains("is-open"));
+    });
+  });
+}
+
+/* -------------------------------------------------------------------------
+   10. Reservation form → WhatsApp
+   ------------------------------------------------------------------------- */
+function buildReservationMessage(massageValue, extraValues) {
+  const extras = extraValues.length
+    ? extraValues.map((value) => t(EXTRAS[value].nameKey)).join(", ")
+    : t("wa.none");
+
+  return [
+    t("wa.intro"),
+    "",
+    t("wa.massage") + ": " + t(TREATMENTS[massageValue].nameKey),
+    t("wa.duration") + ": " + t("treatments.duration"),
+    t("wa.extras") + ": " + extras,
+    "",
+    t("wa.closing"),
+    "",
+    t("wa.thanks")
+  ].join("\n");
+}
+
+function initBooking() {
+  const form = document.getElementById("booking-form");
+  if (!form) return;
+
+  const error = document.getElementById("booking-error");
+  const massageStep = document.getElementById("step-massage");
+
+  const syncOption = (input) => {
+    const label = input.closest(".option");
+    if (label) label.classList.toggle("is-selected", input.checked);
+  };
+
+  const hideError = () => { if (error) error.hidden = true; };
+
+  form.addEventListener("change", (event) => {
+    const input = event.target;
+    if (input.name === "massage") {
+      form.querySelectorAll('input[name="massage"]').forEach(syncOption);
+      hideError();
+    } else if (input.name === "extra") {
+      syncOption(input);
+    }
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const chosen = form.querySelector('input[name="massage"]:checked');
+    if (!chosen) {
+      if (error) {
+        error.textContent = t("reserve.error");
+        error.hidden = false;
+      }
+      massageStep.classList.remove("is-shaking");
+      void massageStep.offsetWidth; // restart the animation
+      massageStep.classList.add("is-shaking");
+      massageStep.addEventListener("animationend", () => massageStep.classList.remove("is-shaking"), { once: true });
+      const firstOption = massageStep.querySelector('input[name="massage"]');
+      if (firstOption) firstOption.focus({ preventScroll: true });
+      return;
+    }
+
+    const extras = Array.from(form.querySelectorAll('input[name="extra"]:checked')).map((input) => input.value);
+    const url = whatsappUrl(buildReservationMessage(chosen.value, extras));
+
+    if (!url) {
+      if (error) {
+        error.textContent = t("config.note") + "CONFIG.whatsappNumber";
+        error.hidden = false;
+      }
+      return;
+    }
+
+    hideError();
+    const opened = window.open(url, "_blank", "noopener");
+    if (!opened) window.location.href = url; // popup blocked
+  });
+}
+
+/* -------------------------------------------------------------------------
+   11. Start
    ------------------------------------------------------------------------- */
 function init() {
   setLanguage(readStoredLang(), { persist: false });
@@ -430,6 +653,8 @@ function init() {
   initNav();
   initScrollUI();
   initReveals();
+  initAccordion();
+  initBooking();
 }
 
 document.readyState === "loading"
