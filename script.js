@@ -1,5 +1,5 @@
 /* =========================================================================
-   Mary Reis Massage Therapy — behaviour
+   MR | Massage & Relief — behaviour
    Vanilla JS only. No build step, no dependencies.
    ========================================================================= */
 
@@ -12,7 +12,7 @@ const CONFIG = {
 
   instagramUrl: "https://www.instagram.com/mary.reis_bjj",
 
-  businessName: "Mary Reis Massage Therapy",
+  businessName: "MR | Massage & Relief",
   location: "Dublin, Ireland",
   address: "Basement, Castleview, 25, Clontarf East, Dublin, D05 X9F8",
 
@@ -45,8 +45,8 @@ const EXTRAS = {
    ------------------------------------------------------------------------- */
 const translations = {
   en: {
-    "meta.title": "Mary Reis Massage Therapy | Therapeutic Massage in Dublin",
-    "meta.description": "Personalised massage therapy in Dublin. Full body, Thai and sport massage — choose your treatment and reserve with Mary Reis.",
+    "meta.title": "MR | Massage & Relief — Therapeutic Massage in Dublin",
+    "meta.description": "Personalised massage therapy in Dublin. Full body, Thai and sport massage — choose your treatment and reserve with Mary.",
 
     "brand.tagline": "Massage Therapy",
 
@@ -66,7 +66,7 @@ const translations = {
     "about.title": "A Moment to Reconnect",
     "about.p1": "Massage therapy is a moment to slow down, release tension and reconnect with your body. Mary offers personalised massage experiences designed around what your body needs on the day.",
     "about.quote": "Therapeutic touch. Real results. Care tailored to your body and your needs.",
-    "about.imageAlt": "Mary Reis working with a client during a treatment",
+    "about.imageAlt": "Mary working with a client during a treatment",
     "about.imageAlt2": "Close-up of a dry needling treatment on a client's back",
 
     "quality.relaxation": "Relaxation",
@@ -120,13 +120,13 @@ const translations = {
 
     "footer.location": "Dublin, Ireland",
     "footer.locationLink": "Location",
-    "footer.copyright": "© 2026 Mary Reis Massage Therapy. All rights reserved.",
+    "footer.copyright": "© 2026 MR | Massage & Relief. All rights reserved.",
 
     "a11y.skip": "Skip to content",
     "a11y.menuOpen": "Open menu",
     "a11y.menuClose": "Close menu",
     "a11y.language": "Language",
-    "a11y.instagram": "Mary Reis on Instagram",
+    "a11y.instagram": "Mary on Instagram",
     "a11y.toTop": "Back to top",
 
     "wa.intro": "Hi Mary! I'd like to book a massage.",
@@ -141,8 +141,8 @@ const translations = {
   },
 
   pt: {
-    "meta.title": "Mary Reis Massoterapia | Massagem Terapêutica em Dublin",
-    "meta.description": "Massagem terapêutica personalizada em Dublin. Massagem completa, tailandesa e desportiva — escolha o seu tratamento e reserve com a Mary Reis.",
+    "meta.title": "MR | Massage & Relief — Massagem Terapêutica em Dublin",
+    "meta.description": "Massagem terapêutica personalizada em Dublin. Massagem completa, tailandesa e desportiva — escolha o seu tratamento e reserve com a Mary.",
 
     "brand.tagline": "Massoterapia",
 
@@ -162,7 +162,7 @@ const translations = {
     "about.title": "Um Momento para se Reconectar",
     "about.p1": "A massagem terapêutica é um momento para desacelerar, aliviar tensões e se reconectar com o seu corpo. A Mary oferece experiências de massagem personalizadas, pensadas para o que o seu corpo precisa naquele dia.",
     "about.quote": "Toque terapêutico. Resultados reais. Cuidado sob medida para o seu corpo e as suas necessidades.",
-    "about.imageAlt": "Mary Reis atendendo um cliente durante uma sessão",
+    "about.imageAlt": "Mary atendendo um cliente durante uma sessão",
     "about.imageAlt2": "Detalhe de uma sessão de dry needling nas costas de um cliente",
 
     "quality.relaxation": "Relaxamento",
@@ -216,13 +216,13 @@ const translations = {
 
     "footer.location": "Dublin, Irlanda",
     "footer.locationLink": "Localização",
-    "footer.copyright": "© 2026 Mary Reis Massage Therapy. Todos os direitos reservados.",
+    "footer.copyright": "© 2026 MR | Massage & Relief. Todos os direitos reservados.",
 
     "a11y.skip": "Ir para o conteúdo",
     "a11y.menuOpen": "Abrir menu",
     "a11y.menuClose": "Fechar menu",
     "a11y.language": "Idioma",
-    "a11y.instagram": "Mary Reis no Instagram",
+    "a11y.instagram": "Mary no Instagram",
     "a11y.toTop": "Voltar ao topo",
 
     "wa.intro": "Oi, Mary! Gostaria de agendar uma massagem.",
@@ -311,7 +311,7 @@ function applyContactLinks() {
     if (missing.length) {
       note.hidden = false;
       note.textContent = t("config.note") + missing.join(", ");
-      console.warn("[Mary Reis site] Still using placeholders: " + missing.join(", "));
+      console.warn("[MR site] Still using placeholders: " + missing.join(", "));
     } else {
       note.hidden = true;
     }

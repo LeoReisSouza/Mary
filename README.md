@@ -1,4 +1,4 @@
-# Mary Reis — Massage Therapy (Dublin)
+# MR | Massage & Relief — Massage Therapy (Dublin)
 
 `https://www.maryreis-massage.com/`
 
