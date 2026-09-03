@@ -7,13 +7,17 @@
    1. CONFIG — the only place you need to edit to go live
    ------------------------------------------------------------------------- */
 const CONFIG = {
-  // International format, digits only (country code + number). +55 11 98861-0626
-  whatsappNumber: "5511988610626",
+  // International format, digits only (country code + number). +353 87 278 5201
+  whatsappNumber: "353872785201",
 
   instagramUrl: "https://www.instagram.com/mary.reis_bjj",
 
   businessName: "MR | Massage & Relief",
   location: "Dublin, Ireland",
+
+  // Venue name is shown on the site; the postal address alone is what gets
+  // sent to Google Maps, so the pin stays accurate.
+  venue: "011GRPL",
   address: "Basement, Castleview, 25, Clontarf East, Dublin, D05 X9F8",
 
   // Generic message used by the WhatsApp link in the footer.
@@ -35,9 +39,8 @@ const TREATMENTS = {
 };
 
 const EXTRAS = {
-  cupping:  { nameKey: "extras.cupping" },
-  minutes:  { nameKey: "extras.minutes" },
-  needling: { nameKey: "extras.needling" }
+  cupping: { nameKey: "extras.cupping" },
+  minutes: { nameKey: "extras.minutes" }
 };
 
 /* -------------------------------------------------------------------------
@@ -67,7 +70,7 @@ const translations = {
     "about.p1": "Massage therapy is a moment to slow down, release tension and reconnect with your body. Mary offers personalised massage experiences designed around what your body needs on the day.",
     "about.quote": "Therapeutic touch. Real results. Care tailored to your body and your needs.",
     "about.imageAlt": "Mary working with a client during a treatment",
-    "about.imageAlt2": "Close-up of a dry needling treatment on a client's back",
+    "about.imageAlt2": "Detail of a treatment session",
 
     "quality.relaxation": "Relaxation",
     "quality.muscle": "Muscle Relief",
@@ -95,7 +98,6 @@ const translations = {
     "extras.title": "Extras",
     "extras.cupping": "Cupping Therapy",
     "extras.minutes": "10 Minutes Extra",
-    "extras.needling": "Dry Needling",
 
     "plans.title": "Monthly Plans",
     "plans.lead": "For a regular rhythm of care.",
@@ -163,7 +165,7 @@ const translations = {
     "about.p1": "A massagem terapêutica é um momento para desacelerar, aliviar tensões e se reconectar com o seu corpo. A Mary oferece experiências de massagem personalizadas, pensadas para o que o seu corpo precisa naquele dia.",
     "about.quote": "Toque terapêutico. Resultados reais. Cuidado sob medida para o seu corpo e as suas necessidades.",
     "about.imageAlt": "Mary atendendo um cliente durante uma sessão",
-    "about.imageAlt2": "Detalhe de uma sessão de dry needling nas costas de um cliente",
+    "about.imageAlt2": "Detalhe de uma sessão de atendimento",
 
     "quality.relaxation": "Relaxamento",
     "quality.muscle": "Alívio Muscular",
@@ -191,7 +193,6 @@ const translations = {
     "extras.title": "Extras",
     "extras.cupping": "Ventosaterapia",
     "extras.minutes": "10 Minutos Extras",
-    "extras.needling": "Dry Needling",
 
     "plans.title": "Planos Mensais",
     "plans.lead": "Para manter um ritmo constante de cuidado.",

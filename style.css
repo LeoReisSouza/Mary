@@ -511,6 +511,15 @@ a { color: inherit; }
   line-height: 1.55;
   color: var(--brand-deep);
 }
+.location__venue {
+  display: block;
+  margin-bottom: .3rem;
+  font-family: var(--font-sans);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  color: var(--brand);
+}
 .location__link {
   display: inline-flex;
   align-items: center;
