@@ -15,10 +15,14 @@ const CONFIG = {
   businessName: "MR | Massage & Relief",
   location: "Dublin, Ireland",
 
-  // Venue name is shown on the site; the postal address alone is what gets
-  // sent to Google Maps, so the pin stays accurate.
+  // Venue name is shown on the site along with the postal address.
   venue: "011GRPL",
   address: "Basement, Castleview, 25, Clontarf East, Dublin, D05 X9F8",
+
+  // Two places in Ireland share this address, so maps and directions are
+  // pinned by coordinates instead of by text. Keep in sync with the
+  // map iframe in index.html if it ever changes.
+  coords: "53.3810831,-6.2081873",
 
   // Generic message used by the WhatsApp link in the footer.
   // The reservation form builds its own message from the visitor's choices.
@@ -303,7 +307,8 @@ function applyContactLinks() {
     if (!igUrl) link.removeAttribute("target");
   });
 
-  const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.address);
+  // Directions to the exact point, not to the (ambiguous) written address
+  const mapsUrl = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(CONFIG.coords);
   document.querySelectorAll("[data-maps]").forEach((link) => { link.href = mapsUrl; });
 
   // Owner-facing hint, only visible while placeholders are still in place
