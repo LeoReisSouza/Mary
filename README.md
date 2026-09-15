@@ -6,7 +6,7 @@ Site estático: HTML + CSS + JavaScript puro. Sem build, sem dependências.
 
 ## Fluxo da página
 
-`Hero → Sobre a Mary + Localização → Tratamentos + Extras + Planos → Reserva → Footer`
+`Hero → Sobre a MR + Localização → Tratamentos + Extras + Planos → Reserva → Footer`
 
 ## Configuração
 
@@ -28,8 +28,8 @@ og:image) e no JSON-LD.
 ## Assets
 
 `assets/`: `logo.png` (emblema em disco verde), `logo-mark.png` (branco, transparente),
-`logo-watermark.png` (verde, transparente), `favicon.png`, `mary.jpg` e `mary-2.jpg`
-(fotos da Mary), `massage-1.jpg` (hero), `og-image.jpg` (compartilhamento).
+`logo-watermark.png` (verde, transparente), `favicon.png`, `about-1.jpg` e `about-2.jpg`
+(fotos da seção About), `massage-1.jpg` (hero), `og-image.jpg` (compartilhamento).
 Originais em `assets/reference/`.
 
 Para trocar uma imagem, substitua o arquivo mantendo o nome. As imagens que têm o verde da

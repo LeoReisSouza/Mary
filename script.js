@@ -27,8 +27,8 @@ const CONFIG = {
   // Generic message used by the WhatsApp link in the footer.
   // The reservation form builds its own message from the visitor's choices.
   whatsappMessage: {
-    en: "Hi Mary! I came across your massage therapy services and I'd love to know more about your treatments. Could you please tell me a little more? Thank you!",
-    pt: "Oi, Mary! Encontrei o seu trabalho de massagem terapêutica e adoraria saber mais sobre as sessões. Você poderia me contar um pouco mais? Obrigado!"
+    en: "Hi! I came across your massage therapy services and I'd love to know more about your treatments. Could you please tell me a little more? Thank you!",
+    pt: "Oi! Encontrei o seu trabalho de massagem terapêutica e adoraria saber mais sobre as sessões. Você poderia me contar um pouco mais? Obrigado!"
   }
 };
 
@@ -53,7 +53,7 @@ const EXTRAS = {
 const translations = {
   en: {
     "meta.title": "MR | Massage & Relief — Therapeutic Massage in Dublin",
-    "meta.description": "Personalised massage therapy in Dublin. Full body, Thai and sport massage — choose your treatment and reserve with Mary.",
+    "meta.description": "Personalised massage therapy in Dublin. Full body, Thai and sport massage — choose your treatment and reserve your session.",
 
     "brand.tagline": "Massage Therapy",
 
@@ -66,14 +66,14 @@ const translations = {
     "hero.title": "Massage Therapy for Your Body & Mind",
     "hero.subtitle": "Relax, restore and reconnect with yourself through personalised therapeutic massage in Dublin.",
     "hero.ctaPrimary": "Explore Treatments",
-    "hero.ctaSecondary": "Meet Mary",
+    "hero.ctaSecondary": "Meet MR",
     "hero.imageAlt": "Therapeutic back massage in a warm, calm treatment room",
 
-    "about.eyebrow": "About Mary",
+    "about.eyebrow": "About MR",
     "about.title": "A Moment to Reconnect",
-    "about.p1": "Massage therapy is a moment to slow down, release tension and reconnect with your body. Mary offers personalised massage experiences designed around what your body needs on the day.",
+    "about.p1": "Massage therapy is a moment to slow down, release tension and reconnect with your body. At MR, every session is a personalised experience, designed around what your body needs on the day.",
     "about.quote": "Therapeutic touch. Real results. Care tailored to your body and your needs.",
-    "about.imageAlt": "Mary working with a client during a treatment",
+    "about.imageAlt": "Therapist working with a client during a treatment",
     "about.imageAlt2": "Detail of a treatment session",
 
     "quality.relaxation": "Relaxation",
@@ -121,7 +121,7 @@ const translations = {
     "reserve.step2": "Add extras",
     "reserve.optional": "optional",
     "reserve.button": "Reserve Your Massage",
-    "reserve.hint": "Opens WhatsApp with your selection so Mary can confirm a time.",
+    "reserve.hint": "Opens WhatsApp with your selection so we can confirm a time.",
     "reserve.error": "Please choose a massage first.",
 
     "footer.location": "Dublin, Ireland",
@@ -132,10 +132,10 @@ const translations = {
     "a11y.menuOpen": "Open menu",
     "a11y.menuClose": "Close menu",
     "a11y.language": "Language",
-    "a11y.instagram": "Mary on Instagram",
+    "a11y.instagram": "MR on Instagram",
     "a11y.toTop": "Back to top",
 
-    "wa.intro": "Hi Mary! I'd like to book a massage.",
+    "wa.intro": "Hi! I'd like to book a massage.",
     "wa.massage": "Massage",
     "wa.duration": "Duration",
     "wa.extras": "Extras",
@@ -148,7 +148,7 @@ const translations = {
 
   pt: {
     "meta.title": "MR | Massage & Relief — Massagem Terapêutica em Dublin",
-    "meta.description": "Massagem terapêutica personalizada em Dublin. Massagem completa, tailandesa e desportiva — escolha o seu tratamento e reserve com a Mary.",
+    "meta.description": "Massagem terapêutica personalizada em Dublin. Massagem completa, tailandesa e desportiva — escolha o seu tratamento e reserve a sua sessão.",
 
     "brand.tagline": "Massoterapia",
 
@@ -161,14 +161,14 @@ const translations = {
     "hero.title": "Massagem Terapêutica para o Corpo e a Mente",
     "hero.subtitle": "Relaxe, restaure e reconecte-se com você através de uma massagem terapêutica personalizada em Dublin.",
     "hero.ctaPrimary": "Ver Tratamentos",
-    "hero.ctaSecondary": "Conhecer a Mary",
+    "hero.ctaSecondary": "Conheça a MR",
     "hero.imageAlt": "Massagem terapêutica nas costas em uma sala aconchegante e tranquila",
 
-    "about.eyebrow": "Sobre a Mary",
+    "about.eyebrow": "Sobre a MR",
     "about.title": "Um Momento para se Reconectar",
-    "about.p1": "A massagem terapêutica é um momento para desacelerar, aliviar tensões e se reconectar com o seu corpo. A Mary oferece experiências de massagem personalizadas, pensadas para o que o seu corpo precisa naquele dia.",
+    "about.p1": "A massagem terapêutica é um momento para desacelerar, aliviar tensões e se reconectar com o seu corpo. Na MR, cada sessão é uma experiência personalizada, pensada para o que o seu corpo precisa naquele dia.",
     "about.quote": "Toque terapêutico. Resultados reais. Cuidado sob medida para o seu corpo e as suas necessidades.",
-    "about.imageAlt": "Mary atendendo um cliente durante uma sessão",
+    "about.imageAlt": "Terapeuta atendendo um cliente durante uma sessão",
     "about.imageAlt2": "Detalhe de uma sessão de atendimento",
 
     "quality.relaxation": "Relaxamento",
@@ -216,7 +216,7 @@ const translations = {
     "reserve.step2": "Adicione extras",
     "reserve.optional": "opcional",
     "reserve.button": "Reservar Minha Massagem",
-    "reserve.hint": "Abre o WhatsApp com a sua escolha para a Mary confirmar o horário.",
+    "reserve.hint": "Abre o WhatsApp com a sua escolha para confirmarmos o horário.",
     "reserve.error": "Escolha uma massagem primeiro.",
 
     "footer.location": "Dublin, Irlanda",
@@ -227,10 +227,10 @@ const translations = {
     "a11y.menuOpen": "Abrir menu",
     "a11y.menuClose": "Fechar menu",
     "a11y.language": "Idioma",
-    "a11y.instagram": "Mary no Instagram",
+    "a11y.instagram": "MR no Instagram",
     "a11y.toTop": "Voltar ao topo",
 
-    "wa.intro": "Oi, Mary! Gostaria de agendar uma massagem.",
+    "wa.intro": "Oi! Gostaria de agendar uma massagem.",
     "wa.massage": "Massagem",
     "wa.duration": "Duração",
     "wa.extras": "Extras",
